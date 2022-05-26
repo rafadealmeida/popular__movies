@@ -1,0 +1,26 @@
+.card__filme--descricao{
+    width: 50%;
+}
+
+.card__filme{
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    width: 80%;
+    justify-content: center;
+    margin: 2% auto;
+}
+
+.card__filme--informacao{
+    display: flex;
+    flex-direction:column;
+    width:15%;
+}
+.card__filme--imagem{
+    border-radius:50%
+}
+
+.filme__informacao--extra{
+    display: flex;
+    gap: 0.5em;
+}
