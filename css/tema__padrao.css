@@ -1,0 +1,10 @@
+:root{
+    --corBackground:#17162e;
+    --corLetra:#FFFFFF;
+    --corBackgroundPesquisa:#8b8b94;
+}
+
+body{
+    background-color:var(--corBackground);
+    color:var(--corLetra)
+}
