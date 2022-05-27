@@ -45,3 +45,12 @@
 .cabecalho__titulo{
     margin-top:2%
 }
+
+.cabecalho__botao--favoritar{
+    background-color: var(--corBackgroundCard);
+    border: 1px solid var(--corLetra);
+    border-radius: 4px;
+    color: var(--corLetra);
+    text-decoration: none;
+    padding:1rem;
+}
