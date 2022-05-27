@@ -1,11 +1,12 @@
-import{filmesServices} from '../javascript/filmes__controller.js'
+import{ filmesServices } from '../javascript/filmes__controller.js'
+
 
 const criaCard = (imagem,nome,nota,descricao)=>{
    
     const section = document.createElement('section');
     const conteudo = `
     
-    <img src="${imagem}" alt="" class="card__filme--imagem">
+    <img src="https://image.tmdb.org/t/p/w500/${imagem}" alt="" class="card__filme--imagem">
     <div class="card__filme--informacao">
         <h2 class="card__filme--titulo">${nome}</h2>
         <div class="filme__informacao--extra">
@@ -28,5 +29,22 @@ const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 
 
 
-sessaoFilmes.appendChild(criaCard('../src/imagens/image 3.jpg','Batman','9.5','RUmmmmmUmmm'))
 
+
+const render = async () => {
+    try{
+         const dados = await filmesServices.listaFilme()
+        //  console.log(dados.results)
+        const filmes = dados.results
+
+        console.log(filmes)
+         filmes.forEach(filme =>{
+            sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
+         })
+    }
+    catch(erro){
+        console.log(erro)
+    }
+}
+
+render()
