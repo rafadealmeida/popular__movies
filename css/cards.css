@@ -21,7 +21,7 @@
 }
 .card__filme--imagem{
     border-radius:50%;
-    /* max-width:250px; */
+    width:12%;
     max-height:134px
 }
 
@@ -29,4 +29,24 @@
     display: flex;
     gap: 1em;
     justify-content: center;
+}
+.card__filme--titulo{
+    display: flex;
+    justify-content: center;
+}
+
+.card__filme--nota{
+    background-image:url(../src/vetores/Star.svg);
+    background-repeat: no-repeat;
+    background-position: 30%;
+    padding-left: 2rem;
+  
+}
+.card__filme--favorito{
+    background-image:url(../src/vetores/Heart.svg);
+    background-repeat: no-repeat;
+    background-position: 10%;
+    background-size: 20%;
+    padding-left: 2rem;
+    
 }
