@@ -1,0 +1,23 @@
+.sessao{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+
+.sessao__card{
+    background-color: var(--corBackgroundCard);
+    padding: 4rem;
+    border: 1px solid var(--corLetra);
+    border-radius:4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sessao__botao{
+    padding: 1rem;
+}
