@@ -20,7 +20,9 @@
     width:17%;
 }
 .card__filme--imagem{
-    border-radius:50%
+    border-radius:50%;
+    /* max-width:250px; */
+    max-height:134px
 }
 
 .filme__informacao--extra{
