@@ -36,6 +36,7 @@ const favoritarFilme = async (tokenID) => {
 }
 
     export const filmesServices = {
-        listaFilme
+        listaFilme,
+        favoritarFilme,
     }
 
