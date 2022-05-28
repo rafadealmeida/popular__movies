@@ -46,7 +46,7 @@ const sessaoId = async () =>{
 
         console.log(sessionID)
 
-        window.location.href = `https://www.themoviedb.org/authenticate/${sessionID}?redirect_to=http://127.0.0.1:5500/html/index.html/approved`
+        window.location.href = `https://www.themoviedb.org/authenticate/${sessionID}?redirect_to=https://rafadealmeida.github.io/popular__movies/html/index.html/approved`
     }
     catch(err){
         console.log(err)
