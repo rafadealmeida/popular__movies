@@ -40,9 +40,9 @@ const render = async () => {
        
 
             filmes.forEach(filme =>{
-                if (sessaoFilmes.children.length<=9){
+                
                 sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
-                }
+                
             })
         
     }
