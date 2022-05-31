@@ -1,7 +1,7 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 
 
-const criaCard = (imagem,nome,nota,descricao)=>{
+export const criaCard = (imagem,nome,nota,descricao)=>{
    
     const section = document.createElement('section');
     const conteudo = `
@@ -31,7 +31,7 @@ const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 
 
 
-const render = async () => {
+export const render = async () => {
     try{
          const dados = await filmesServices.listaFilme()
         //  console.log(dados.results)
