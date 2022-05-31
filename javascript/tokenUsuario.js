@@ -46,9 +46,12 @@ const sessaoId = async () =>{
 
         console.log(sessionID)
 
-        window.location.href = `https://www.themoviedb.org/authenticate/${sessionID}?redirect_to=https://rafadealmeida.github.io/popular__movies/html/index.html/approved`
+        window.open(`https://www.themoviedb.org/authenticate/${sessionID}` , '_blank')
+
+        // window.location.href = `https://www.themoviedb.org/authenticate/${sessionID}` 
     }
     catch(err){
         console.log(err)
     }
 }
+
