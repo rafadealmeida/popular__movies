@@ -37,14 +37,22 @@ const render = async () => {
         //  console.log(dados.results)
         const filmes = dados.results
 
-        console.log(filmes)
-         filmes.forEach(filme =>{
-            sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
-         })
+       
+
+            filmes.forEach(filme =>{
+                if (sessaoFilmes.children.length<=9){
+                sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
+                }
+            })
+        
     }
     catch(erro){
         console.log(erro)
     }
 }
 
-render()
+
+{
+
+    render()
+}
