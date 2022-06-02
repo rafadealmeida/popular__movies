@@ -1,5 +1,4 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
-import { criaCard} from '../javascript/criaCard.js'
 import { render } from '../javascript/criaCard.js'
 
 
@@ -15,8 +14,22 @@ const esperaRender = async () => {
         favorito.addEventListener('click', () =>{
             console.log('favoritou')
             favorito.style.backgroundImage = "url('../src/vetores/HeartFav.svg')"
+            
+
+
         })
     })
     }
     
 esperaRender()
+
+function getFavoritaFilme(){
+    return JSON.parse(localStorage.getItem('FilmesFavoritos'))
+}
+
+function saveToLocalStorage(filme) {
+    const filmes = getFavoritaFilme() || []
+    filmes.push(filme)
+    const filmesJSON = JSON.stringify(filmes)
+    localStorage.setItem('FilmesFavoritos', filmesJSON)
+}
