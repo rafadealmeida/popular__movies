@@ -1,7 +1,7 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 
 
-export const criaCard = (imagem,nome,nota,descricao)=>{
+export const criaCard = (imagem,nome,nota,descricao,id)=>{
    
     const section = document.createElement('section');
     const conteudo = `
@@ -11,7 +11,7 @@ export const criaCard = (imagem,nome,nota,descricao)=>{
         <h2 class="card__filme--titulo">${nome}</h2>
         <div class="filme__informacao--extra">
             <p class="card__filme--nota">${nota}</p>
-            <p class="card__filme--favorito">Favoritar</p>
+            <p class="card__filme--favorito" id = ${id}>Favoritar</p>
         </div>
     </div>
     <p class="card__filme--descricao">${descricao}</p>
@@ -37,11 +37,11 @@ export const render = async () => {
         //  console.log(dados.results)
         const filmes = dados.results
 
-       
-
             filmes.forEach(filme =>{
                 
-                sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
+                sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview,filme.id))
+                let id = filme.id
+                console.log(filme.id)
                 
             })
         
@@ -51,8 +51,4 @@ export const render = async () => {
     }
 }
 
-
-{
-
     render()
-}
