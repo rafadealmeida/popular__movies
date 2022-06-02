@@ -7,6 +7,18 @@ const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 const botaoPesquisar = document.querySelector(".cabecalho__pesquisa--botao")
 const input = document.querySelector(".cabecalho__pesquisa--barra")
 
+input.addEventListener("keyup",(event)=>{
+    
+   if(input.value.length === 0){
+        sessaoFilmes.innerHTML = ""
+        render()
+    } else if(event.keyCode === 13){
+
+        let movie = input.value
+        pesquisarFilme(movie)
+    }
+})
+
 botaoPesquisar.onclick = () =>{
     let movie = input.value
     
@@ -33,12 +45,6 @@ const pesquisarFilme = async (filme) =>{
                 
             })
         }
-        else{
-            window.reload()
-            render()
-            console.log("nada digitado")
-        }
-
 
     } catch (error) {
         console.log(error)
