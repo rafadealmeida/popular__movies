@@ -11,10 +11,33 @@ const esperaRender = async () => {
 
     fav.forEach(favorito => {
 
-        favorito.addEventListener('click', () =>{
-            console.log('favoritou')
-            favorito.style.backgroundImage = "url('../src/vetores/HeartFav.svg')"
+        favorito.addEventListener('click', (event, filme) =>{
+            let coracaoFav = event.target.style.backgroundImage
             
+            console.log(coracaoFav)
+            
+            const favoritoEstado = {
+                favoritado :  "url('../src/vetores/HeartFav.svg')",
+                naoFavoritado :  "url('../src/vetores/Heart.svg')"
+            }
+            
+            if(coracaoFav == "" || coracaoFav === "url('../src/vetores/Heart.svg')"){
+                favorito.style.backgroundImage = favoritoEstado.favoritado
+                console.log("favoritou")
+                console.log(coracaoFav)
+                
+                
+                
+            }else{
+                favorito.style.backgroundImage = favoritoEstado.naoFavoritado
+                console.log("Desfavoritou")
+                console.log(coracaoFav)
+                coracaoFav=""
+                
+            }
+
+            // favorito.style.backgroundImage = "url('../src/vetores/HeartFav.svg')"
+           
 
 
         })
@@ -32,4 +55,23 @@ function saveToLocalStorage(filme) {
     filmes.push(filme)
     const filmesJSON = JSON.stringify(filmes)
     localStorage.setItem('FilmesFavoritos', filmesJSON)
+}
+
+function chegarFavorito(id){
+    const filmes =  getFavoritaFilme() || []
+    return filmes.find(filme=>filme.id == id)
+}
+
+function removeFromLocalStorage(id){
+    const filmes = getFavoritaFilme() || []
+    const acharFilme = filmes.find(filme=>filme.id == id)
+    const novosFilmes = filmes.filter(filme=>filme.id != acharFilme.id)
+    localStorage.setItem('FilmesFavoritos', JSON.stringify(novosFilmes))
+}
+
+export const favService = {
+    getFavoritaFilme,
+    saveToLocalStorage,
+    chegarFavorito,
+    removeFromLocalStorage,
 }
