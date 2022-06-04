@@ -41,7 +41,7 @@ export const render = async () => {
                 
                 sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview,filme.id))
                 let id = filme.id
-                console.log(filme.id)
+                // console.log(filme.id)
                 
             })
         
