@@ -3,47 +3,44 @@ import { render } from '../javascript/criaCard.js'
 
 let filmeFavorito
 
+const favoritoEstado = {
+    favoritado :  "url('../src/vetores/HeartFav.svg')",
+    naoFavoritado :  "url('../src/vetores/Heart.svg')"
+}
+
 const esperaRender = async () => {
     await render()
     
     const fav = document.querySelectorAll('.card__filme--favorito')
     
+   
 
     fav.forEach(favorito => {
 
-        favorito.addEventListener('click', (event, filme) =>{
+        favorito.addEventListener('click', (event) =>{
             let coracaoFav = event.target.style.backgroundImage
-           let id = event.target.id
-           console.log(id)
-            
-            
-            const favoritoEstado = {
-                favoritado :  "url('../src/vetores/HeartFav.svg')",
-                naoFavoritado :  "url('../src/vetores/Heart.svg')"
-            }
-            
+            let id = event.target.id
+            let filme
+                                         
             if(coracaoFav == "" || filmeFavorito == false){
                 favorito.style.backgroundImage = favoritoEstado.favoritado
                 filmeFavorito = true
 
-                procurarFilme(id)
-                // saveToLocalStorage(filme)
-                
+                procurarFilme(id).then(data=>{
+                    filme = data
+                    saveToLocalStorage(filme)
+                })      
                 
             }else if (filmeFavorito){
                 favorito.style.backgroundImage = favoritoEstado.naoFavoritado
                
                 coracaoFav=""
                 filmeFavorito = false
-                
-                removeFromLocalStorage(filme)
+                removeFromLocalStorage(id)   
             }
- 
-
-
         })
     })
-    }
+}
     
 esperaRender()
 
@@ -74,19 +71,16 @@ function removeFromLocalStorage(id){
 const procurarFilme = async (id) => {
 
     try {
-        
-        
-        const dados = await filmesServices.pesquisaFilme(id)
+               
+        const dados = await filmesServices.pesquisaFilmeID(id)
 
-        const filme = dados.results
-        
-        console.log(dados)
+        const filme = dados
 
-        
+        return filme
     } catch (error) {
         console.log(error)
     }
-    
+   
 }
 
 export const favService = {
