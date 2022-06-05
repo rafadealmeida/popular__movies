@@ -1,7 +1,7 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 import { render } from '../javascript/criaCard.js'
 
-
+let filmeFavorito
 
 const esperaRender = async () => {
     await render()
@@ -13,27 +13,30 @@ const esperaRender = async () => {
 
         favorito.addEventListener('click', (event, filme) =>{
             let coracaoFav = event.target.style.backgroundImage
+           let id = event.target.id
+           console.log(id)
             
-            console.log(coracaoFav)
             
             const favoritoEstado = {
                 favoritado :  "url('../src/vetores/HeartFav.svg')",
                 naoFavoritado :  "url('../src/vetores/Heart.svg')"
             }
             
-            if(coracaoFav == "" || coracaoFav === "url('../src/vetores/Heart.svg')"){
+            if(coracaoFav == "" || filmeFavorito == false){
                 favorito.style.backgroundImage = favoritoEstado.favoritado
-                console.log("favoritou")
-                console.log(coracaoFav)
+                filmeFavorito = true
+
+                
+                saveToLocalStorage(filme)
                 
                 
-                
-            }else{
+            }else if (filmeFavorito){
                 favorito.style.backgroundImage = favoritoEstado.naoFavoritado
-                console.log("Desfavoritou")
-                console.log(coracaoFav)
+               
                 coracaoFav=""
+                filmeFavorito = false
                 
+                removeFromLocalStorage(filme)
             }
 
             // favorito.style.backgroundImage = "url('../src/vetores/HeartFav.svg')"
@@ -45,6 +48,7 @@ const esperaRender = async () => {
     }
     
 esperaRender()
+
 
 function getFavoritaFilme(){
     return JSON.parse(localStorage.getItem('FilmesFavoritos'))
