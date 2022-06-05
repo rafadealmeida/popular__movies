@@ -26,8 +26,8 @@ const esperaRender = async () => {
                 favorito.style.backgroundImage = favoritoEstado.favoritado
                 filmeFavorito = true
 
-                
-                saveToLocalStorage(filme)
+                procurarFilme(id)
+                // saveToLocalStorage(filme)
                 
                 
             }else if (filmeFavorito){
@@ -38,9 +38,7 @@ const esperaRender = async () => {
                 
                 removeFromLocalStorage(filme)
             }
-
-            // favorito.style.backgroundImage = "url('../src/vetores/HeartFav.svg')"
-           
+ 
 
 
         })
@@ -71,6 +69,24 @@ function removeFromLocalStorage(id){
     const acharFilme = filmes.find(filme=>filme.id == id)
     const novosFilmes = filmes.filter(filme=>filme.id != acharFilme.id)
     localStorage.setItem('FilmesFavoritos', JSON.stringify(novosFilmes))
+}
+
+const procurarFilme = async (id) => {
+
+    try {
+        
+        
+        const dados = await filmesServices.pesquisaFilme(id)
+
+        const filme = dados.results
+        
+        console.log(dados)
+
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
 }
 
 export const favService = {
