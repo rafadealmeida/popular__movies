@@ -44,6 +44,12 @@ export const render = async () => {
                 let id = filme.id
                 // console.log(filme.id)
                 
+                let coracaoFav = document.querySelectorAll(".card__filme--favorito")
+                coracaoFav.forEach(favorito =>{
+                    chegarFavorito(id) ? favorito.style.backgroundImage = favoritoEstado.favoritado : favorito.style.backgroundImage = favoritoEstado.nãofavoritado
+                    
+
+                })
             })
         
     }
@@ -54,5 +60,15 @@ export const render = async () => {
 
     render()
 
+function getFavoritaFilme(){
+    return JSON.parse(localStorage.getItem('FilmesFavoritos'))
+    }
+export function chegarFavorito(id){
+    const filmes =  getFavoritaFilme() || []
+    return filmes.find(filme=>filme.id == id)
+    }
 
-    
+const favoritoEstado = {
+        favoritado :  "url('../src/vetores/HeartFav.svg')",
+        naoFavoritado :  "url('../src/vetores/Heart.svg')"
+    }

@@ -1,7 +1,7 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 import { render } from '../javascript/criaCard.js'
 
-let filmeFavorito
+let filmeFavorito 
 
 const favoritoEstado = {
     favoritado :  "url('../src/vetores/HeartFav.svg')",
@@ -56,10 +56,10 @@ function saveToLocalStorage(filme) {
     localStorage.setItem('FilmesFavoritos', filmesJSON)
 }
 
-function chegarFavorito(id){
-    const filmes =  getFavoritaFilme() || []
-    return filmes.find(filme=>filme.id == id)
-}
+// function chegarFavorito(id){
+//     const filmes =  getFavoritaFilme() || []
+//     return filmes.find(filme=>filme.id == id)
+// }
 
 function removeFromLocalStorage(id){
     const filmes = getFavoritaFilme() || []
@@ -86,6 +86,6 @@ const procurarFilme = async (id) => {
 export const favService = {
     getFavoritaFilme,
     saveToLocalStorage,
-    chegarFavorito,
+    // chegarFavorito,
     removeFromLocalStorage,
 }
