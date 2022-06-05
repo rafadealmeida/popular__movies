@@ -8,9 +8,9 @@ const listaFilme = async () =>{
     throw new Error("Não foi possível listar os filmes")
     
     
-    .then(data => {
-        console.log(data.results)
-    })
+    // .then(data => {
+    //     console.log(data.results)
+    // })
 
     
 }
@@ -55,10 +55,11 @@ const pesquisaFilmeID = async (id) =>{
 
     }
     throw new Error("Não foi possível pesquisar o filme")
-
+    .then(data => {
+        console.log(data.results)
+    })
     
 }
-
 
     export const filmesServices = {
         listaFilme,
