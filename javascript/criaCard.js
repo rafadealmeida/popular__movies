@@ -1,6 +1,7 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 
 
+
 export const criaCard = (imagem,nome,nota,descricao,id)=>{
    
     const section = document.createElement('section');
@@ -52,3 +53,6 @@ export const render = async () => {
 }
 
     render()
+
+
+    
