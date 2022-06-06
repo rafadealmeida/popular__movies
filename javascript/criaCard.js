@@ -29,29 +29,47 @@ return section;
 const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 
 
-
+let id
 
 
 export const render = async () => {
     try{
          const dados = await filmesServices.listaFilme()
-        //  console.log(dados.results)
+         console.log(dados.results)
         const filmes = dados.results
 
             filmes.forEach(filme =>{
                 
                 sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview,filme.id))
-                let id = filme.id
+                id = filme.id
                 // console.log(filme.id)
                 
-                let coracaoFav = document.querySelectorAll(".card__filme--favorito")
-                coracaoFav.forEach(favorito =>{
-                    chegarFavorito(id) ? favorito.style.backgroundImage = favoritoEstado.favoritado : favorito.style.backgroundImage = favoritoEstado.nãofavoritado
-                    
+                // console.log(coracaoFav)
+                // coracaoFav.forEach(favorito =>{
+                //     chegarFavorito(id) ? favorito.style.backgroundImage = favoritoEstado.favoritado : favorito.style.backgroundImage = favoritoEstado.nãofavoritado
+                //     chegarFavorito(id) ? console.log("Tem favorito") : console.log("Não tem favorito")
+            })      
 
-                })
-            })
-        
+                // })
+
+                
+                // let coracaoFav = document.querySelectorAll(".card__filme--favorito")
+                // for (let i = 0; i < coracaoFav.length; i++) {
+                //     const fav = coracaoFav[i];
+                //     console.log(fav)
+                //     chegarFavorito(id) ? fav.style.backgroundImage = favoritoEstado.favoritado : fav.style.backgroundImage = favoritoEstado.nãofavoritado
+                //     chegarFavorito(id) ? console.log("Tem favorito") : console.log("Não tem favorito")
+                    
+                //     if(chegarFavorito(id)){
+                //         fav.style.backgroundImage = favoritoEstado.favoritado 
+
+                //     }
+                //     else{
+                //         fav.style.backgroundImage = favoritoEstado.nãofavoritado
+                //     }
+                // }
+            
+          
     }
     catch(erro){
         console.log(erro)
