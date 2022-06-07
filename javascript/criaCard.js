@@ -29,47 +29,36 @@ return section;
 const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 
 
-let id
+// let id
 
 
 export const render = async () => {
     try{
-         const dados = await filmesServices.listaFilme()
-         console.log(dados.results)
+        const dados = await filmesServices.listaFilme()
+        console.log(dados.results)
         const filmes = dados.results
 
             filmes.forEach(filme =>{
                 
                 sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview,filme.id))
-                id = filme.id
-                // console.log(filme.id)
+                filme.id
                 
-                // console.log(coracaoFav)
-                // coracaoFav.forEach(favorito =>{
-                //     chegarFavorito(id) ? favorito.style.backgroundImage = favoritoEstado.favoritado : favorito.style.backgroundImage = favoritoEstado.nãofavoritado
-                //     chegarFavorito(id) ? console.log("Tem favorito") : console.log("Não tem favorito")
-            })      
-
-                // })
-
+                let coracaoFav = document.querySelectorAll(".card__filme--favorito")
                 
-                // let coracaoFav = document.querySelectorAll(".card__filme--favorito")
-                // for (let i = 0; i < coracaoFav.length; i++) {
-                //     const fav = coracaoFav[i];
-                //     console.log(fav)
-                //     chegarFavorito(id) ? fav.style.backgroundImage = favoritoEstado.favoritado : fav.style.backgroundImage = favoritoEstado.nãofavoritado
-                //     chegarFavorito(id) ? console.log("Tem favorito") : console.log("Não tem favorito")
-                    
-                //     if(chegarFavorito(id)){
-                //         fav.style.backgroundImage = favoritoEstado.favoritado 
-
-                //     }
-                //     else{
-                //         fav.style.backgroundImage = favoritoEstado.nãofavoritado
-                //     }
-                // }
-            
-          
+                for (let i = 0; i < coracaoFav.length; i++) {
+                        const fav = coracaoFav[i];
+                        let id = fav.id
+                        const movies = getFavoritaFilme() || []
+                       
+                        if(movies.find(filme=>filme.id == id)){
+                            fav.style.backgroundImage = favoritoEstado.favoritado 
+    
+                        }
+                        else{
+                            fav.style.backgroundImage = favoritoEstado.nãofavoritado
+                        }
+                    }     
+                })                 
     }
     catch(erro){
         console.log(erro)
@@ -81,11 +70,7 @@ export const render = async () => {
 function getFavoritaFilme(){
     return JSON.parse(localStorage.getItem('FilmesFavoritos'))
     }
-export function chegarFavorito(id){
-    const filmes =  getFavoritaFilme() || []
-    return filmes.find(filme=>filme.id == id)
-    }
-
+    
 const favoritoEstado = {
         favoritado :  "url('../src/vetores/HeartFav.svg')",
         naoFavoritado :  "url('../src/vetores/Heart.svg')"
