@@ -35,7 +35,7 @@ const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 export const render = async () => {
     try{
         const dados = await filmesServices.listaFilme()
-        console.log(dados.results)
+        // console.log(dados.results)
         const filmes = dados.results
 
             filmes.forEach(filme =>{
@@ -67,7 +67,7 @@ export const render = async () => {
 
     render()
 
-function getFavoritaFilme(){
+export function getFavoritaFilme(){
     return JSON.parse(localStorage.getItem('FilmesFavoritos'))
     }
     

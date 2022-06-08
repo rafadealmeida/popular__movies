@@ -1,6 +1,8 @@
 import{ filmesServices } from '../javascript/filmes__controller.js'
 import { criaCard} from '../javascript/criaCard.js'
 import {render} from '../javascript/criaCard.js'
+import { getFavoritaFilme } from '../javascript/criaCard.js'
+import { esperaRender } from './favoritarFilme.js'
 
 
 const sessaoFilmes = document.querySelector(".cards__filmes--todos")
@@ -16,13 +18,13 @@ input.addEventListener("keyup",(event)=>{
 
         let movie = input.value
         pesquisarFilme(movie)
+       
     }
 })
 
 botaoPesquisar.onclick = () =>{
     let movie = input.value
-    
-    console.log(movie)
+
     pesquisarFilme(movie)
 }
 const pesquisarFilme = async (filme) =>{
@@ -32,22 +34,52 @@ const pesquisarFilme = async (filme) =>{
 
         const filmes = dados.results
 
-        console.log(input.length)
-
         if(input.value.length>0){
 
             
             sessaoFilmes.innerHTML = ""
             
             filmes.forEach(filme =>{
-                
-                sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview))
-                
+               
+                    if(filme.poster_path == "" || filme.overview == ""){
+                        return
+                    }
+                    else{
+                        
+                        sessaoFilmes.appendChild(criaCard(filme.poster_path,filme.title,filme.vote_average,filme.overview,filme.id))
+                        filme.id
+                        
+                        let coracaoFav = document.querySelectorAll(".card__filme--favorito")
+                        console.log(coracaoFav)
+                        
+                        for (let i = 0; i < coracaoFav.length; i++) {
+                            const fav = coracaoFav[i];
+                            let id = fav.id
+                            const movies = getFavoritaFilme() || []
+                            
+                            if(movies.find(filme=>filme.id == id)){
+                                fav.style.backgroundImage = favoritoEstado.favoritado 
+                                
+                            }
+                            else{
+                                fav.style.backgroundImage = favoritoEstado.nãofavoritado
+                            }
+                        }   
+                        esperaRender()
+                        
+                    }
+                   
+
             })
         }
 
     } catch (error) {
         console.log(error)
     }
+}
+
+const favoritoEstado = {
+    favoritado :  "url('../src/vetores/HeartFav.svg')",
+    naoFavoritado :  "url('../src/vetores/Heart.svg')"
 }
 
