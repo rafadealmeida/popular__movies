@@ -43,7 +43,10 @@
 }
 
 .cabecalho__titulo{
-    margin-top:2%
+    margin-top:2%;
+    text-decoration: none;
+    color:var(--corLetra)
+    
 }
 
 .cabecalho__botao--favoritar{
