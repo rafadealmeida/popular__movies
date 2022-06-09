@@ -21,7 +21,6 @@ export const esperaRender = async () => {
             let coracaoFav = event.target.style.backgroundImage
             let id = event.target.id
             let filme
-            console.log("clicou")
                                          
             if(coracaoFav == "" || filmeFavorito == false){
                 favorito.style.backgroundImage = favoritoEstado.favoritado
