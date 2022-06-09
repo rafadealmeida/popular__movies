@@ -2,12 +2,17 @@ import { render } from "./criaCard.js"
 import { getFavoritaFilme } from "./criaCard.js"
 import{ criaCard } from './criaCard.js'
 import {favService} from "./favoritarFilme.js"
+import{esperaRender} from './favoritarFilme.js'
 
 const checkbox = document.querySelector(".cabecalho__checkbox--input")
 const sessaoFilmes = document.querySelector(".cards__filmes--todos")
 
 checkbox.addEventListener("change",(event) => {
     event.currentTarget.checked  ? mostrarFavoritos() : voltarFilme()
+})
+
+window.addEventListener("load", () => {
+    unchecked()
 })
 
 const mostrarFavoritos = () =>{
@@ -50,9 +55,14 @@ const mostrarFavoritos = () =>{
 const voltarFilme = ()=>{
     sessaoFilmes.innerHTML=""
     render()
+    esperaRender()
 
 }
 const favoritoEstado = {
     favoritado :  "url('../src/vetores/HeartFav.svg')",
     naoFavoritado :  "url('../src/vetores/Heart.svg')"
+}
+
+function unchecked () {
+    checkbox.checked = false
 }
