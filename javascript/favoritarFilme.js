@@ -43,36 +43,6 @@ export const esperaRender = async () => {
     
 esperaRender()
 
-// setTimeout(function(){
-//     const fav = document.querySelectorAll('.card__filme--favorito')
-    
-//    console.log(fav)
-
-//     fav.forEach(favorito => {
-
-//         favorito.addEventListener('click', (event) =>{
-//             let coracaoFav = event.target.style.backgroundImage
-//             let id = event.target.id
-//             let filme
-//             console.log("clicou")
-                                         
-//             if(coracaoFav == "" || filmeFavorito == false){
-//                 favorito.style.backgroundImage = favoritoEstado.favoritado
-//                 filmeFavorito = true     
-//                 procurarFilme(id).then(data=>{
-//                     filme = data
-//                     saveToLocalStorage(filme)
-//                 })      
-                
-//             }else{
-//                 favorito.style.backgroundImage = favoritoEstado.naoFavoritado
-//                 coracaoFav=""
-//                 filmeFavorito = false
-//                 removeFromLocalStorage(id)   
-//             }
-//         })
-//     })
-// },1000)
 
 
 function getFavoritaFilme(){
